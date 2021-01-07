@@ -67,8 +67,8 @@ def get_neighbors_from_dists(dists, K):
     :param K: a number of neighbors to compute
     :return: an output in the shape <#of queries> X min(K, <# of data points>)
     """
-    dists_sorted = np.argsort(dists, axis=-1)
-    return dists_sorted[:,:K]
+    dists.sort()
+    return dists[:,:K]
 
 
 def compute_kl_div_neighbors(data_matrix, query_matrix, K):
@@ -98,7 +98,6 @@ def compute_neighbors(dist_type, data, queries, K):
     :param K:                the number of neighbors
     :return: an output in the shape <#of queries> X min(K, <# of data points>)
     """
-
     dist_type = dist_type.lower()
 
     if dist_type in SKLEARN_MAP:
